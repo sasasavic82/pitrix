@@ -5,14 +5,19 @@ import picamera
 import picamera.array
 import random
 
+from typing import Tuple
 from vector_2d import Vector
 from base import PitrixBase
+
+
+def randomColour() -> Tuple[int, int, int]:
+    return random.randint(0,255), random.randint(0,255), random.randint(0,255)
 
 class Bouncy(PitrixBase):
     def __init__(self, *args, **kwargs):
         super(Bouncy, self).__init__(*args, **kwargs)
 
-    def run(self):
+    def run(self) -> None:
 
         position = Vector(random.randint(1,32), random.randint(1,32))
         velocity = Vector(random.randint(1,2), random.randint(1,2))
@@ -26,7 +31,12 @@ class Bouncy(PitrixBase):
             if position.y > self.matrix.height or position.y < 0:
                 velocity = Vector(velocity.x, velocity.y * -1)
 
-            self.matrix.SetPixel(position.x,  position.y, random.randint(0,255), random.randint(0,255), random.randint(0,255))
+            (r, g, b) = randomColour()
+
+            print(f'{r} {g} {b}')
+
+            self.matrix.SetPixel(position.x,  position.y, r, g, b)
+
             time.sleep(0.05)
 
 # entrypoint ...
