@@ -33,7 +33,7 @@ class Bouncy(PitrixBase):
 
             (r, g, b) = randomColour()
 
-            print(f'{r} {g} {b}')
+            print(f'x:{position.x} y:{position.y} ({r},{g},{b})')
 
             self.matrix.SetPixel(position.x,  position.y, r, g, b)
 
